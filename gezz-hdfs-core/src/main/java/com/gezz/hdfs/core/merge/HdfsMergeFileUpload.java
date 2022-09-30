@@ -28,16 +28,16 @@ public class HdfsMergeFileUpload {
      */
     public void mergeFile() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem
-        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "bigdata");
 
         //2、获取hdfs大文件的输出流
-        FSDataOutputStream outputStream = fileSystem.create(new Path(GersonConstants.BIGDATA_PATH + "/test_big.txt"));
+        FSDataOutputStream outputStream = fileSystem.create(new Path(GersonConstants.HDFS_TEST_PATH + "/test_big.txt"));
 
         //3、获取一个本地文件系统
         LocalFileSystem localFileSystem = FileSystem.getLocal(new Configuration());
 
         //4、获取本地文件夹下面的所有的小文件
-        FileStatus[] fileStatuses = localFileSystem.listStatus(new Path("D://input"));
+        FileStatus[] fileStatuses = localFileSystem.listStatus(new Path(GersonConstants.DAY02_PATH));
 
         //5、遍历
         for (FileStatus fileStatus : fileStatuses) {

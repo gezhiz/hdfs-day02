@@ -4,9 +4,11 @@ package com.gezz.hdfs.common.constants;
  * @author gezhizheng
  */
 public class GersonConstants {
-    public static String FS_URL = "hdfs://hadoop277ha:8020";
+    public static String FS_URL = "hdfs://bigdata03:8020";
 
     public static String KEY_DEFAULTFS = "fs.defaultFS";
 
-    public static String BIGDATA_PATH = "/Users/gezz/data/bigdata/";
+    public static String DAY02_PATH = "/Users/gezz/data/bigdata/day02";
+
+    public static String HDFS_TEST_PATH = "test";
 }
