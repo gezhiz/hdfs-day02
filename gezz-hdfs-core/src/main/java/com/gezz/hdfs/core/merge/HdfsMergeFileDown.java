@@ -1,6 +1,7 @@
-package com.gezz.hdfs;
+package com.gezz.hdfs.core.merge;
 
 
+import com.gezz.hdfs.common.constants.GersonConstants;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
@@ -22,13 +23,13 @@ public class HdfsMergeFileDown {
     //合并下载到本地磁盘小文件
     public void mergeFileDown() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
 
         //2、获取一个本地文件系统
         LocalFileSystem localFileSystem = FileSystem.getLocal(new Configuration());
 
         //3、获取本地大文件的输出流
-        FSDataOutputStream outputStream = localFileSystem.create(new Path("D://file_big1109.txt"),true);
+        FSDataOutputStream outputStream = localFileSystem.create(new Path("/Users/gezz/data/bigdata/mapreducecfg.txt"),true);
 
         //4、获取HDFS下面的所有的小文件
         RemoteIterator<LocatedFileStatus> listFiles = fileSystem.listFiles(new Path("/input"), true);

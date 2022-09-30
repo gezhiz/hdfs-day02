@@ -1,6 +1,7 @@
-package com.gezz.hdfs;
+package com.gezz.hdfs.core.merge;
 
 
+import com.gezz.hdfs.common.constants.GersonConstants;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
@@ -27,10 +28,10 @@ public class HdfsMergeFileUpload {
      */
     public void mergeFile() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
 
         //2、获取hdfs大文件的输出流
-        FSDataOutputStream outputStream = fileSystem.create(new Path("/test_big.txt"));
+        FSDataOutputStream outputStream = fileSystem.create(new Path(GersonConstants.BIGDATA_PATH + "/test_big.txt"));
 
         //3、获取一个本地文件系统
         LocalFileSystem localFileSystem = FileSystem.getLocal(new Configuration());

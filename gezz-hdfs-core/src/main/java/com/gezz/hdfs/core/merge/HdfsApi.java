@@ -1,8 +1,10 @@
-package com.gezz.hdfs;
+package com.gezz.hdfs.core.merge;
 
+import com.gezz.hdfs.common.constants.GersonConstants;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+import org.apache.hadoop.hdfs.protocol.HdfsConstants;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,7 +35,7 @@ public class HdfsApi {
         Configuration conf = new Configuration();
 
         //2、设置文件系统类型
-        conf.set("fs.defaultFS","hdfs://hadoop0:8020");
+        conf.set(GersonConstants.KEY_DEFAULTFS,GersonConstants.FS_URL);
 
         //3、获取指定文件系统
         FileSystem fileSystem = FileSystem.get(conf);
@@ -51,7 +53,7 @@ public class HdfsApi {
         Configuration conf = new Configuration();
 
         //2:设置文件系统类型
-        conf.set("fs.defaultFS", "hdfs://hadoop0:8020");
+        conf.set(GersonConstants.KEY_DEFAULTFS, GersonConstants.FS_URL);
 
         //3:获取指定文件系统
         FileSystem fileSystem = FileSystem.newInstance(conf);
@@ -65,7 +67,7 @@ public class HdfsApi {
      * @throws Exception
      */
     public void getFileSystem3() throws Exception{
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration());
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration());
         System.out.println("fileSystem:"+fileSystem);
     }
 
@@ -74,14 +76,14 @@ public class HdfsApi {
      * @throws Exception
      */
     public void getFileSystem4() throws Exception{
-        FileSystem fileSystem = FileSystem.newInstance(new URI("hdfs://hadoop0:8020"), new Configuration());
+        FileSystem fileSystem = FileSystem.newInstance(new URI(GersonConstants.FS_URL), new Configuration());
         System.out.println("fileSystem:"+fileSystem);
     }
 
     //文件的遍历
     public void listFiles() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem实例
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(),"root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(),"root");
 
         //2、调用一个方法
         RemoteIterator<LocatedFileStatus> iterator = fileSystem.listFiles(new Path("/"), true);
@@ -98,7 +100,7 @@ public class HdfsApi {
     //创建文件夹
     public void mkdirs() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem实例
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
 
         //2、创建文件夹
         fileSystem.mkdirs(new Path("/aa1/bb1/cc1"));
@@ -110,7 +112,7 @@ public class HdfsApi {
     //上传文件
     public void uploadFile() throws URISyntaxException, IOException, InterruptedException {
         //1、获取fileSystem实例
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
 
         //2、上传文件
         fileSystem.copyFromLocalFile(new Path("D://input/test1.txt"),new Path("/aa/bb/cc"));
@@ -122,7 +124,7 @@ public class HdfsApi {
     //下载文件 通过输入输出流的方式
     public void downFile() throws URISyntaxException, IOException, InterruptedException {
         //1、获取fileSystem实例
-        FileSystem fileSystem = FileSystem.get(new URI("hdfs://hadoop0:8020"), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
 
         //2、获取hdfs的输入流
         FSDataInputStream inputStream = fileSystem.open(new Path("/aa/bb/cc/test1.txt"));
