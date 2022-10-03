@@ -46,6 +46,7 @@ public class HdfsMergeFileUpload {
             IOUtils.copy(inputStream,outputStream);
             IOUtils.closeQuietly(inputStream);
         }
+        outputStream.flush();
         //7、关闭流
         IOUtils.closeQuietly(outputStream);
         localFileSystem.close();
