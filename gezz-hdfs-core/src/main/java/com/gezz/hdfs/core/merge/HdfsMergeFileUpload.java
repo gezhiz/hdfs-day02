@@ -28,7 +28,7 @@ public class HdfsMergeFileUpload {
      */
     public void mergeFile() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem
-        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "bigdata");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.ACTIVE_NAME_NODE_URL), new Configuration(), "bigdata");
 
         //2、获取hdfs大文件的输出流
         FSDataOutputStream outputStream = fileSystem.create(new Path(GersonConstants.HDFS_TEST_PATH + "/test_big.txt"));

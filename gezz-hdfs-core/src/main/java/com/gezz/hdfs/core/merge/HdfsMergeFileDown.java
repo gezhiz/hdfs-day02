@@ -23,7 +23,7 @@ public class HdfsMergeFileDown {
     //合并下载到本地磁盘小文件
     public void mergeFileDown() throws URISyntaxException, IOException, InterruptedException {
         //1、获取FileSystem
-        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.FS_URL), new Configuration(), "root");
+        FileSystem fileSystem = FileSystem.get(new URI(GersonConstants.ACTIVE_NAME_NODE_URL), new Configuration(), "root");
 
         //2、获取一个本地文件系统
         LocalFileSystem localFileSystem = FileSystem.getLocal(new Configuration());

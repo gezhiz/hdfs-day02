@@ -4,7 +4,11 @@ package com.gezz.hdfs.common.constants;
  * @author gezhizheng
  */
 public class GersonConstants {
-    public static String FS_URL = "hdfs://bigdata03:9000";
+    /**
+     * namenode 主节点
+     * 如果需要做到高可用，需要读取zookeeper的主节点配置
+     */
+    public static String ACTIVE_NAME_NODE_URL = "hdfs://bigdata03:9000";
 
     public static String KEY_DEFAULTFS = "fs.defaultFS";
 
