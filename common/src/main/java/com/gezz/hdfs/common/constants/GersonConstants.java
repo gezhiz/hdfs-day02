@@ -14,5 +14,9 @@ public class GersonConstants {
 
     public static String DAY02_PATH = "/Users/gezz/data/bigdata/day02";
 
+    public static String DAY02_PATH_OUT_PUT = "/Users/gezz/data/bigdata/output";
+
     public static String HDFS_TEST_PATH = "/test";
+
+    public static String HDFS_USER = "bigdata";
 }
