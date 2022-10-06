@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -40,7 +41,7 @@ public class JobMain {
         job.setMapOutputValueClass(LongWritable.class);
 
         //3 4 5 6 四个步骤，都是Shuffle阶段，现在阶段使用默认的即可
-
+        job.setPartitionerClass(MyPartitioner.class);
         //7、设置Reducer类型，并设置k3 v3
         job.setReducerClass(WordReducer.class);
         job.setOutputKeyClass(Text.class);
@@ -48,9 +49,11 @@ public class JobMain {
 
         //8、设置输出的路径，让结果存放到某个地方去
         job.setOutputFormatClass(TextOutputFormat.class);
-        TextOutputFormat.setOutputPath(job,new Path(GersonConstants.DAY02_PATH + "/wordcount/output"));
+        String outPutPath = GersonConstants.DAY02_PATH + "/wordcount/output";
+        TextOutputFormat.setOutputPath(job,new Path(outPutPath));
 //        TextOutputFormat.setOutputPath(job,new Path("hdfs://192.168.22.128:8020/word_out2"));
 
+        job.setNumReduceTasks(3);
         //三、等待程序完成
         boolean b = job.waitForCompletion(true);
         System.out.println(b);
