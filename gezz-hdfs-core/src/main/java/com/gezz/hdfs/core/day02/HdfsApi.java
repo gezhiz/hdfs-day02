@@ -1,4 +1,4 @@
-package com.gezz.hdfs.core.merge;
+package com.gezz.hdfs.core.day02;
 
 import com.gezz.hdfs.common.constants.GersonConstants;
 import org.apache.commons.io.IOUtils;
